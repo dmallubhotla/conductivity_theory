@@ -1,0 +1,179 @@
+\documentclass[../main.tex]{subfiles}
+
+\newcommand{\sigmaDC}{\sigma_{\textrm{DC}}}
+\newcommand{\sigmaAC}{\sigma_{\textrm{AC}}}
+\newcommand{\del}{\nabla}
+
+\title{Drude Conductivity}
+\author{\begin{telugu}హృదయ్ దీపక్ మల్లుభొట్ల\end{telugu}}
+% want empty date
+\predate{}
+\date{}
+\postdate{}
+
+\begin{document}
+	% !TeX spellcheck = en_GB
+	\onlyinsubfile{\maketitle}
+	\section{Drude Conductivity} \label{sec:DrudeConductivity}
+
+	The assumptions of the Drude model are simple: we have interaction-free electrons that occasionally undergo some scattering process during a time $\dd{t}$ with probability $\frac{\dd{t}}{\tau}$, where $\tau$ is some phenomenological parameter.
+	This scattering will randomise electron momentum.
+
+	Our ultimate goal will be to find the conductivity $\sigma$ and the dielectric constant $\epsilon$ in the Drude model, with Drude relaxation time $\tau$, electron density $n$ and electron mass $m$.
+	We'll find
+	\begin{align}
+		\sigmaDC &= \frac{n e^2 \tau}{m} \\
+		\sigmaAC &= \frac{n e^2 \tau}{m} \frac{1}{1 - i \omega \tau} && \text{For SI and Gaussian} \label{eq:DrudeTheory:SigmaAC}
+	\end{align}
+
+	\begin{subequations}
+		\begin{align}
+			\epsilon_r &= 1 + i \frac{4 \pi \sigma}{\omega} && \text{Gaussian} \\
+			\epsilon_r &= 1 + i \frac{\sigma}{\omega \epsilon_0} && \text{SI}
+		\end{align}
+	\end{subequations}
+
+	Our dielectric constant can be rewritten to plug in for $\sigma$, giving us
+	\begin{align}
+		\epsilon &= 1 + i \frac{4 \pi \sigma}{\omega} \\
+		&= 1 + i \frac{4 \pi \sigmaDC}{\omega} \frac{1}{1 - i \omega \tau} \\
+		&= 1 + i \frac{4 \pi \sigmaDC}{\omega} \frac{1}{1 - i \omega \tau} \frac{1 + i \omega\tau}{1 + i \omega \tau} \\
+		&= 1 + i \frac{4 \pi \sigmaDC}{\omega} \frac{1 + i \omega \tau}{1 + \omega^2 \tau^2} \\
+		&= \left(1 - \frac{4 \pi \sigmaDC \omega \tau}{\omega\left(1 + \omega^2 \tau^2 \right)} \right) + i \left( \frac{4 \pi \sigmaDC}{\omega \left( 1 + \omega^2 \tau^2 \right)} \right) \\
+		&= \left(1 - \frac{4 \pi \sigmaDC  \tau}{1 + \omega^2 \tau^2 } \right) + i \left( \frac{4 \pi \sigmaDC}{\omega \left( 1 + \omega^2 \tau^2 \right)} \right)
+	\end{align}
+
+	This lets us write down the explicit real and imaginary of the Drude dielectric function.
+
+	\subsection{Alternative forms of the Drude model} \label{subsec:altforms}
+	We can also rewrite the dielectric constant very slightly in terms of the plasma frequency.
+	In Gaussian units:
+	\begin{align}
+		\epsilon &= 1 + i \frac{4 \pi \sigma}{\omega} \\
+		&= 1 + i \frac{4 \pi}{\omega} \frac{n e^2 \tau}{m} \frac{1}{1 - i \omega \tau} \\
+		&= 1 + i \frac{4 \pi}{\omega} \frac{n e^2 \tau}{m} \frac{1}{1 - i \omega \tau} \frac{i \nu}{i \nu} \\
+		&= 1 - \frac{4 \pi}{\omega} \frac{n e^2 }{m} \frac{1}{i \nu + \omega }
+	\end{align}
+	With $\omega_p^2 = \frac{4 \pi n e^2}{m}$ in Gaussian units, this becomes
+	\begin{align}
+		\epsilon = 1 - \frac{\omega_p^2}{\omega ( \omega + i \nu )}
+	\end{align}
+	We'll see this again later.
+
+	\subsection{Derivations for Drude model} \label{subsec:derivations}
+
+	\subsubsection{DC Conductivity}
+	We can start unit-system independently, with the expression
+	\begin{equation}
+	{\vec{j}} = \sigma \vec{E}. \label{eq:DrudeTheory:ConductivityDef}
+	\end{equation}
+	We can also relate our current to our average electron velocity: $\vec{j} = n e \vec{v}$.
+	Imagine at time $t = 0$ our electron undergoes a Drude collision, and emerges with $\vec{v}_{t = 0} = \vec{v_0}$.
+	After a time $t$, the electron will accelerate with acceleration $-\frac{e \vec{E}}{m}$ (which fortunately remains unit independent).
+	Because it will only accelerate for a time $\tau$ on average before a collision, it will end up with velocity $\vec{v} = -\frac{e \vec{E}}{m}\tau + \vec{v_0}$.
+	The average velocity, and current, will be
+	\begin{align}
+		\ev{\vec{v}} &= - \frac{e \vec{E}}{m}\tau + \ev{\vec{v_0}} \\
+		&= - \frac{e \vec{E}}{m}\tau \\
+		\frac{\vec{j}}{ne} &= - \frac{e \vec{E}}{m}\tau \\
+		\vec{j} &= - \frac{n e^2 \tau}{m} \vec{E}.
+	\end{align}
+	This of course gives us, unit-independently, our DC conductivity $\sigmaDC = \frac{n e^2 \tau}{m}$.
+
+	\subsubsection{AC Conductivity}
+
+	The AC conductivity is also simple, but we want to be a bit more formal about it.
+	We can write out the contributions to velocity in terms of probabilities.
+	The velocity at a time $\dd{t}$ will have probability $\flatfrac{\dd{t}}{\tau}$ of being $0$, and will otherwise be the original velocity minus $a \dd{t}$:
+	\begin{align}
+		\vec{v}(\dd{t}) &= \left(1 - \frac{\dd{t}}{\tau}\right) \left(\vec{v_0} - \frac{e \vec{E}}{m} \dd{t} \right) \\
+		&= \vec{v_0} - \frac{\dd{t}}{\tau}\vec{v_0} - \frac{e \vec{E}}{m} \dd{t},
+	\end{align}
+	where we've invoked our inalienable right as physicists to ignore all terms $\mathcal{O}(\dd{t}^2)$.
+	This reduces, using the definition of $\dd{\vec{v}} = \vec{v}(\dd{t}) - \vec{v_0}$, to
+	\begin{align}
+		\dd{\vec{v}} &=  \frac{\dd{t}}{\tau} \vec{v} - \frac{e \vec{E}}{m} \dd{t} \\
+		\dv{\vec{v}}{t} &= \frac{\vec{v}}{\tau} - \frac{e \vec{E}}{m}
+	\end{align}
+
+	We can quickly Fourier transform this, using $\dv{}{t} \rightarrow -i \omega$, and we get (after surreptitiously dropping some vector signs)
+	\begin{align}
+		-i \omega v(\omega) &= - \frac{v(\omega)}{\tau} - \frac{e E(\omega)}{m} \\
+		v(\omega) &= \frac{e E(\omega)}{m \left(\frac{1}{\tau} - i\omega \right)} \\
+		j(\omega) &= \frac{n e^2 E(\omega)}{m \left(\frac{1}{\tau} - i\omega \right)} \\
+		&= \frac{n e^2 \tau E(\omega)}{m \left(1 - i\omega \tau \right)},
+	\end{align}
+	which gives us our AC conductivity in equation~\eqref{eq:DrudeTheory:SigmaAC}.
+
+	\subsubsection{Dielectric constant}
+
+	Now for our dielectric constant, we have to find some other defining relation on par with~\eqref{eq:DrudeTheory:ConductivityDef}.
+	The relevant equation we'll want to look at looks like our wave equation
+	\begin{equation}
+		-\del^2 \vec{E} = \frac{\omega^2}{v_{\textrm{phase}}^2} \vec{E}
+	\end{equation}
+
+	The phase velocity would satisfy
+	\begin{equation}
+		\frac{1}{v_{\textrm{phase}}^2} = \mu \epsilon
+	\end{equation}
+	The cleanest thing to do is to consider relative dielectric constants $\epsilon_r = \frac{\epsilon}{\epsilon_0}$.
+	For a non-magnetic material, where $\mu = \mu_0$, and we can see that
+	\begin{align}
+		\frac{1}{v_{\textrm{phase}}^2} &= \mu \epsilon \\
+		&= \mu_0 \epsilon_0 \epsilon_r \\
+		&= \frac{1}{c^2} \epsilon_r,
+	\end{align}
+	which makes our defining relationship
+	\begin{equation} \label{eq:DrudeTheory:DielectricDef}
+	-\laplacian{\vec{E}} = \frac{\omega^2}{c^2} \epsilon_r(\omega) \vec{E}
+	\end{equation}
+
+	For non-magnetic materials, thus, we have our defining relationship.
+	The Drude model falls out of solving for this using Maxwell's equations (in SI units!):
+	\begin{align}
+		\div{\vec{E}} &= \frac{\rho}{\epsilon} \\
+		\curl{\vec{E}} &= - \pdv{\vec{B}}{t} \\
+		\div{\vec{B}} &= 0 \\
+		\curl{\vec{B}} &= \mu_0 \vec{j} + \mu_0 \epsilon_0 \pdv{\vec{E}}{t}
+	\end{align}
+
+	Now, in order to find $-\laplacian{\vec{E}}$, we can use everyone's fav identity
+	\begin{equation}
+		\curl(\curl{\vec{\Upsilon}}) = \grad(\div{\vec{\Upsilon}}) - \laplacian{\vec{\Upsilon}}
+	\end{equation}
+	Our goal is thus to find $\curl(\curl{\vec{E}})$
+	\begin{align}
+		- \laplacian{\vec{E}} &= \curl(\curl{\vec{E}}) - \grad(\div{\vec{E}}) \\
+		&= \curl(\curl{\vec{E}}) - \grad(0) \\
+		&= \curl(- \pdv{\vec{B}}{t})
+	\end{align}
+	Working in Fourier transformed time space, with $\dv{}{t} \rightarrow -i \omega$,
+	\begin{align}
+		- \laplacian{\vec{E}} &= i\omega \curl(\vec{B}) \\
+		&= i \omega \left(\mu_0 \vec{j} + \mu_0 \epsilon_0 \pdv{\vec{E}}{t} \right) \\
+		&= i \omega \left(\frac{1}{c^2 \epsilon_0} \vec{j} + \frac{1}{c^2} \pdv{\vec{E}}{t} \right) \\
+		&= i \frac{\omega}{c^2} \left(\frac{1}{\epsilon_0} \vec{j} - i\omega \vec{E} \right) \\
+		&= \frac{\omega}{c^2} \left(\omega \vec{E} + i \frac{1}{\epsilon_0} \vec{j} \right) \\
+		&= \frac{\omega^2}{c^2} \left(\vec{E} + i \frac{1}{\omega \epsilon_0} \vec{j} \right)
+	\end{align}
+	Up to now, the only real assumptions have been that we're working with a non-magnetic material, and that we're looking at waves specifically.
+	We can now insert the assumption that $\vec{j} = \sigma \vec{E}$.
+	One important note here is that we're implicitly assuming we have this well defined relationship, which I believe only really works for cases where $\vec{E}$ (and thus, $\vec{J}$) is constant over scales larger than the electron mean free path.
+	Otherwise, we wouldn't be able to write this down in this way (this is slightly weaker than our earlier assumption of constant field, and explains how to find out how big of field wavelengths the Drude results will be valid over).
+	Plugging this in,
+	\begin{align}
+		- \laplacian{\vec{E}} &= \frac{\omega^2}{c^2} \left(\vec{E} + i \frac{1}{\omega \epsilon_0} \sigma \vec{E} \right) \\
+		&= \frac{\omega^2}{c^2} \left(1+ \frac{i \sigma}{\omega \epsilon_0} \right) \vec{E}
+	\end{align}
+
+	Comparing this with~\eqref{eq:DrudeTheory:DielectricDef}, we see that we have, in SI units,
+	\begin{equation}
+		\epsilon_r = 1 + \frac{i \sigma}{\omega \epsilon_0},
+	\end{equation}
+	confirming the earlier claim.
+
+	Note also that this entire relationship only works for non-zero $\omega$.
+	Essentially, if $\omega$ is zero, the Drude model can't say much about a dielectric function;
+	there is simply conduction.\todo{What does this actually mean}
+\end{document}

@@ -1,0 +1,47 @@
+\documentclass{article}
+
+% set up telugu
+\usepackage{fontspec}
+\newfontfamily\telugufont{Potti Sreeramulu}[Script = Telugu,RawFeature={mode=harf}]
+\usepackage{polyglossia}
+\setdefaultlanguage{english}
+\setotherlanguage{telugu}
+
+%other packages
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{physics}
+\usepackage{siunitx}
+\usepackage{todonotes}
+\usepackage[plain]{fancyref}
+\usepackage{luacode}
+\usepackage{titling}
+\usepackage{subfiles}
+
+\pagestyle{headings}
+
+\title{Conductivity}
+\author{\begin{telugu}హృదయ్ దీపక్ మల్లుభొట్ల\end{telugu}}
+% want empty date
+\predate{}
+\date{}
+\postdate{}
+
+% !TeX spellcheck = en_GB
+\newcommand{\onlyinsubfile}[1]{#1}
+\newcommand{\notinsubfile}[1]{}
+\begin{document}
+\renewcommand{\onlyinsubfile}[1]{}
+\renewcommand{\notinsubfile}[1]{#1}
+
+\maketitle
+
+\tableofcontents
+
+\subfile{tex/drude}
+
+\newpage
+\section{todos} \label{sec:todos}
+\listoftodos
+
+\end{document}
