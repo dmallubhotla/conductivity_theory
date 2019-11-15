@@ -16,6 +16,9 @@
 \usepackage[plain]{fancyref}
 \usepackage{luacode}
 \usepackage{titling}
+\usepackage[
+style=phys, articletitle=false, biblabel=brackets, chaptertitle=false, pageranges=false, url=true
+]{biblatex}
 \usepackage{subfiles}
 
 \pagestyle{headings}
@@ -26,6 +29,24 @@
 \predate{}
 \date{}
 \postdate{}
+
+\providecommand{\main}{.}
+\addbibresource{\main/bibliography.bib}
+
+
+%%% Default start and end for each subfile
+\AtBeginDocument{%
+}
+
+\AtEndDocument{%
+\appendix
+\newpage
+\listoftodos
+\newpage
+\printbibliography
+
+}
+
 
 % !TeX spellcheck = en_GB
 \newcommand{\onlyinsubfile}[1]{#1}
@@ -39,9 +60,6 @@
 \tableofcontents
 
 \subfile{tex/drude}
-
-\newpage
-\section{todos} \label{sec:todos}
-\listoftodos
+\subfile{tex/semiclassical}
 
 \end{document}

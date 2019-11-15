@@ -10,18 +10,25 @@ OUTPUTS := $(patsubst tex/%.tex, pdfs/%.pdf,$(SOURCES))
 
 all: pdfs/main.pdf $(OUTPUTS)
 
-.PHONY: all tidy clean
+.PHONY: all tidy clean declutter
 
-tidy:
+declutter:
+	@rm -f tex/*.tdo
+	@rm -f tex/*.run.xml
+	@rm -f tex/*.bbl
+	@rm -f *.tdo
+	@rm -f *.run.xml
+	@rm -f *.bbl
+
+
+tidy: declutter
 	@latexmk -c
 	@cd tex; latexmk -c
-	@rm -f tex/*.tdo
 
-clean:
+clean: declutter
 	rm -f pdfs/*
 	@latexmk -C
 	@cd tex; latexmk -C
-	@rm -f tex/*.tdo
 
 $(PDF_DIR):
 	mkdir $(PDF_DIR)
@@ -30,6 +37,6 @@ pdfs/main.pdf: main.tex $(SOURCES) | $(PDF_DIR)
 	$(LATEXMK) $(<F)
 	cp $(@F) $@
 
-$(OUTPUTS): pdfs/%.pdf: tex/%.tex | $(PDF_DIR)
+$(OUTPUTS): pdfs/%.pdf: tex/%.tex main.tex | $(PDF_DIR)
 	cd $(<D); $(LATEXMK) $(<F)
 	@cp $(<D)/$(@F) $@

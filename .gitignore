@@ -8,3 +8,7 @@
 *.toc
 *.tdo
 .idea
+*.bbl
+*.bcf
+*.blg
+*.run.xml
