@@ -16,12 +16,22 @@ tidy:
 	@latexmk -c
 	@cd tex; latexmk -c
 	@rm -f tex/*.tdo
+	@rm -f tex/*.run.xml
+	@rm -f tex/*.bbl
+	@rm -f *.tdo
+	@rm -f *.run.xml
+	@rm -f *.bbl
 
 clean:
 	rm -f pdfs/*
 	@latexmk -C
 	@cd tex; latexmk -C
 	@rm -f tex/*.tdo
+	@rm -f tex/*.run.xml
+	@rm -f tex/*.bbl
+	@rm -f *.tdo
+	@rm -f *.run.xml
+	@rm -f *.bbl
 
 $(PDF_DIR):
 	mkdir $(PDF_DIR)
