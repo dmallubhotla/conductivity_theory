@@ -65,9 +65,9 @@
 	\subsubsection{DC Conductivity}
 	We can start unit-system independently, with the expression
 	\begin{equation}
-	{\vec{j}} = \sigma \vec{E}. \label{eq:DrudeTheory:ConductivityDef}
+	\vec{\jmath} = \sigma \vec{E}. \label{eq:DrudeTheory:ConductivityDef}
 	\end{equation}
-	We can also relate our current to our average electron velocity: $\vec{j} = n e \vec{v}$.
+	We can also relate our current to our average electron velocity: $\vec{\jmath} = n e \vec{v}$.
 	Imagine at time $t = 0$ our electron undergoes a Drude collision, and emerges with $\vec{v}_{t = 0} = \vec{v_0}$.
 	After a time $t$, the electron will accelerate with acceleration $-\frac{e \vec{E}}{m}$ (which fortunately remains unit independent).
 	Because it will only accelerate for a time $\tau$ on average before a collision, it will end up with velocity $\vec{v} = -\frac{e \vec{E}}{m}\tau + \vec{v_0}$.
@@ -75,8 +75,8 @@
 	\begin{align}
 		\ev{\vec{v}} &= - \frac{e \vec{E}}{m}\tau + \ev{\vec{v_0}} \\
 		&= - \frac{e \vec{E}}{m}\tau \\
-		\frac{\vec{j}}{ne} &= - \frac{e \vec{E}}{m}\tau \\
-		\vec{j} &= - \frac{n e^2 \tau}{m} \vec{E}.
+		\frac{\vec{\jmath}}{ne} &= - \frac{e \vec{E}}{m}\tau \\
+		\vec{\jmath} &= - \frac{n e^2 \tau}{m} \vec{E}.
 	\end{align}
 	This of course gives us, unit-independently, our DC conductivity $\sigmaDC = \frac{n e^2 \tau}{m}$.
 
@@ -135,7 +135,7 @@
 		\div{\vec{E}} &= \frac{\rho}{\epsilon} \\
 		\curl{\vec{E}} &= - \pdv{\vec{B}}{t} \\
 		\div{\vec{B}} &= 0 \\
-		\curl{\vec{B}} &= \mu_0 \vec{j} + \mu_0 \epsilon_0 \pdv{\vec{E}}{t}
+		\curl{\vec{B}} &= \mu_0 \vec{\jmath} + \mu_0 \epsilon_0 \pdv{\vec{E}}{t}
 	\end{align}
 
 	Now, in order to find $-\laplacian{\vec{E}}$, we can use everyone's fav identity
@@ -151,14 +151,14 @@
 	Working in Fourier transformed time space, with $\dv{}{t} \rightarrow -i \omega$,
 	\begin{align}
 		- \laplacian{\vec{E}} &= i\omega \curl(\vec{B}) \\
-		&= i \omega \left(\mu_0 \vec{j} + \mu_0 \epsilon_0 \pdv{\vec{E}}{t} \right) \\
-		&= i \omega \left(\frac{1}{c^2 \epsilon_0} \vec{j} + \frac{1}{c^2} \pdv{\vec{E}}{t} \right) \\
-		&= i \frac{\omega}{c^2} \left(\frac{1}{\epsilon_0} \vec{j} - i\omega \vec{E} \right) \\
-		&= \frac{\omega}{c^2} \left(\omega \vec{E} + i \frac{1}{\epsilon_0} \vec{j} \right) \\
-		&= \frac{\omega^2}{c^2} \left(\vec{E} + i \frac{1}{\omega \epsilon_0} \vec{j} \right)
+		&= i \omega \left(\mu_0 \vec{\jmath} + \mu_0 \epsilon_0 \pdv{\vec{E}}{t} \right) \\
+		&= i \omega \left(\frac{1}{c^2 \epsilon_0} \vec{\jmath} + \frac{1}{c^2} \pdv{\vec{E}}{t} \right) \\
+		&= i \frac{\omega}{c^2} \left(\frac{1}{\epsilon_0} \vec{\jmath} - i\omega \vec{E} \right) \\
+		&= \frac{\omega}{c^2} \left(\omega \vec{E} + i \frac{1}{\epsilon_0} \vec{\jmath} \right) \\
+		&= \frac{\omega^2}{c^2} \left(\vec{E} + i \frac{1}{\omega \epsilon_0} \vec{\jmath} \right)
 	\end{align}
 	Up to now, the only real assumptions have been that we're working with a non-magnetic material, and that we're looking at waves specifically.
-	We can now insert the assumption that $\vec{j} = \sigma \vec{E}$.
+	We can now insert the assumption that $\vec{\jmath} = \sigma \vec{E}$.
 	One important note here is that we're implicitly assuming we have this well defined relationship, which I believe only really works for cases where $\vec{E}$ (and thus, $\vec{J}$) is constant over scales larger than the electron mean free path.
 	Otherwise, we wouldn't be able to write this down in this way (this is slightly weaker than our earlier assumption of constant field, and explains how to find out how big of field wavelengths the Drude results will be valid over).
 	Plugging this in,
