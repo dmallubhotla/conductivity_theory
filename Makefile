@@ -33,10 +33,10 @@ clean: declutter
 $(PDF_DIR):
 	mkdir $(PDF_DIR)
 
-pdfs/main.pdf: main.tex $(SOURCES) | $(PDF_DIR)
+pdfs/main.pdf: main.tex $(SOURCES) bibliography.bib | $(PDF_DIR)
 	$(LATEXMK) $(<F)
 	cp $(@F) $@
 
-$(OUTPUTS): pdfs/%.pdf: tex/%.tex main.tex | $(PDF_DIR)
+$(OUTPUTS): pdfs/%.pdf: tex/%.tex main.tex bibliography.bib | $(PDF_DIR)
 	cd $(<D); $(LATEXMK) $(<F)
 	@cp $(<D)/$(@F) $@
