@@ -26,7 +26,7 @@ tidy: declutter
 	@cd tex; latexmk -c
 
 clean: declutter
-	rm -f pdfs/*
+	rm -rf pdfs
 	@latexmk -C
 	@cd tex; latexmk -C
 
