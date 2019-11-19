@@ -1,0 +1,105 @@
+\providecommand{\main}{..}
+\documentclass[../main.tex]{subfiles}
+
+\title{Summary of Agarwal}
+\author{\begin{telugu}హృదయ్ దీపక్ మల్లుభొట్ల\end{telugu}}
+% want empty date
+\predate{}
+\date{}
+\postdate{}
+
+\newcommand{\kb}{k_{\mathrm{B}}}
+\newcommand{\polr}{\vec{\mathfrak{P}}}
+\newcommand{\magn}{\vec{\mathfrak{M}}}
+\newcommand{\ecorr}{\mathfrak{E}^{(S)}_{ij}}
+\newcommand{\hcorr}{\mathfrak{H}^{(S)}_{ij}}
+\newcommand{\mixcorr}{\mathfrak{G}^{(S)}_{ij}}
+\newcommand{\mixcorrflip}{\mathfrak{\mathcal{G}}^{(S)}_{ij}}
+
+
+\begin{document}
+
+% !TeX spellcheck = en_GB
+\onlyinsubfile{\maketitle}
+\section{Agarwal summary}\label{sec:AgarwalSummary}
+
+This section is intended as a summary of Agarwal\supercite{Agarwal}.
+Since it's all based on that, I'll suppress citations of Agarwal, apart from specific equations I want to reference.
+
+\subsection{Linear Response Theory and Fluctuations} \label{subsec:LrtF}
+
+	Agarwal begins by assuming we have some Hamiltonian $H_0$ and an equilibrium density matrix
+	\begin{equation}
+		\rho = \frac{e^{\beta H_0}}{\Tr(e^{\beta H_0})},
+	\end{equation}
+	with $\beta = \flatfrac{1}{T}$ and assuming $\kb = 1$ (which Agarwal doesn't do, but I want to).
+	We then perturb with
+	\begin{equation}
+		H_{ext} = - \int \dd[3]{r} \sum_j A_j(\vec{r}, t) f_j(\vec{r}, t),
+	\end{equation}
+	with $f_j$ as our external forces and $A_j$ is set of dynamical variables.
+
+	We can define the generalised susceptibility operators $\chi_{ij}$ with
+	\begin{align}
+		\chi_{ij}(\vec{r}, \vec{r}', t - t') &= 2 i \eta(t - t') \chi''_{ij}(\vec{r}, \vec{r}', t - t') \\
+		\chi_{ij} &= \chi'_{ij} + i \chi''_{ij} \\
+		\chi''_{ij} &= \frac{1}{2\hbar} \ev{\comm{A_i(\vec{r}, t)}{A_j(\vec{r}', t')}} \\
+		\chi'_{ij}(\vec{r}, \vec{r}', \omega) &= \mathcal{P} \int \frac{\dd{\omega'}}{\pi} \frac{\chi''_{ij}(\vec{r}, \vec{r'}, \omega')}{\omega' - \omega}
+	\end{align}
+	Doing perturbation theory of $A_i$ to $f_j$ shows that the response is
+	\begin{equation}
+		\delta \ev{A_i(\vec{r}, t)} = \sum_j \int \dd[3]{r'} \dd{t'} \chi_{ij}(\vec{r}, \vec{r}', t - t') f_j(\vec{r}', t').
+	\end{equation}
+	(This is fairly easy to show, although slightly unenlightening.
+	See also the discussion in~\cite{Giuliani2005}.)
+	Note that this means
+	\begin{equation}
+		\fdv{\ev{A_i(\vec{r}, \omega)}}{f_j(\vec{r}', \omega)} = \chi_{ij}(\vec{r}, \vec{r}', \omega).
+	\end{equation}
+
+	In the above, Agarwal essentially defines $\chi$ via the Kramers-Kronig relations it satisfies and just one of its parts, although I think it doesn't have to be done this way.
+	I think occasionally it's more useful to define the full object explicitly then show it satisfies those relations.
+
+	We also define some symmetrised correlation functions
+	\begin{equation}
+		S_{ij}(\vec{r}, \vec{r}', t - t') = \frac12 \ev{\acomm{A_i(\vec{r}, t) - \ev{A_i(\vec{r}, t)}}{A_j(\vec{r}', t') - \ev{A_j(\vec{r}', t')}}},
+	\end{equation}
+	which represent correlations between fluctuations.
+	This is given by the fluctuation-dissipation theorem
+	\begin{equation}
+		S_{ij}(\vec{r}, \vec{r}', \omega) = \hbar \coth(\frac{\beta \omega \hbar}{2}) \chi_{ij}''(\vec{r}, \vec{r}', \omega).
+	\end{equation}
+	There are some discussions in Agarwal about the symmetry properties of these correlation functions, but I'll reserve rewriting them here in the event that they're actually useful.\todo{come back if useful}
+
+	Now, we'll define our Hamiltonian with an external polarisation $\polr$ and external magnetisation $\magn$,
+	\begin{equation}
+		H_{ext} = - \int \dd[3]{r} \left[ \polr(\vec{r}, t) \cdot \vec{E}(\vec{r}, t) + \magn(\vec{r}, t) \cdot \vec{H}(\vec{r}, t) \right],
+	\end{equation}
+	coupling the polarisation to the electric field and magnetisation to the magnetic field, as we would expect.
+	We can define four response functions,
+	\begin{align}
+		\chi_{ijEE}(\vec{r}, \vec{r}', \omega) &= \fdv{\ev{E_i(\vec{r}, \omega)}}{\polr_j(\vec{r}', \omega)} \\
+		\chi_{ijEH}(\vec{r}, \vec{r}', \omega) &= \fdv{\ev{E_i(\vec{r}, \omega)}}{\magn_j(\vec{r}', \omega)} \\
+		\chi_{ijHE}(\vec{r}, \vec{r}', \omega) &= \fdv{\ev{H_i(\vec{r}, \omega)}}{\polr_j(\vec{r}', \omega)} \\
+		\chi_{ijHH}(\vec{r}, \vec{r}', \omega) &= \fdv{\ev{H_i(\vec{r}, \omega)}}{\magn_j(\vec{r}', \omega)},
+	\end{align}
+	as well as four correlation functions
+	\begin{align}
+		\ecorr      (\vec{r}, \vec{r}', t - t') &= \frac12 \ev{\acomm{E_i(\vec{r}, t)}{E_j(\vec{r}', t')}} \\
+		\mixcorr    (\vec{r}, \vec{r}', t - t') &= \frac12 \ev{\acomm{E_i(\vec{r}, t)}{H_j(\vec{r}', t')}} \\
+		\mixcorrflip(\vec{r}, \vec{r}', t - t') &= \frac12 \ev{\acomm{H_i(\vec{r}, t)}{E_j(\vec{r}', t')}} \\
+		\hcorr      (\vec{r}, \vec{r}', t - t') &= \frac12 \ev{\acomm{H_i(\vec{r}, t)}{H_j(\vec{r}', t')}}.
+	\end{align}
+
+	The fluctuation-dissipation theorem will connect either the real or imaginary parts of the response functions to the correlation function, where the specific symmetry properties of $E$ and $H$ determine the exact relation.
+	This means that we can focus on calculating the response functions, which will be calculated from Maxwell's equations:
+	\begin{align}
+		&\curl{\vec{E}} = - \frac{1}{c} \pdv{t} \left( \vec{B} + 4 \pi \magn \right) \\
+		&\div( \vec{B} + 4 \pi \magn) = 0 \\
+		&\curl{\vec{H}} = \frac{1}{c} \pdv{t} \left( \vec{D} + 4 \pi \polr \right) \\
+		&\div(\vec{D} + 4 \pi \polr) = 0.
+	\end{align}
+	As Agarwal helpfully recaps, our boundary conductions across surfaces will be that the tangential components of $\vec{E}$ and $\vec{H}$ are continuous across the interface, along with the normal components of $\vec{D}$ and $\vec{B}$.
+	Now, Agarwal says of course that we're assuming no surface currents or surface charges, which seems like it should be somewhat disruptive of our future use for calculating properties like surface impedance.\todo{Either talk about why this isn't a problem, or  correct this.}
+
+\end{document}
