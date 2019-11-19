@@ -16,4 +16,22 @@
 
 	We'll talk about Tinkham's derivation\supercite{Tinkham}, which shows the same $\sigma\sim\frac{1}{q}$ dependence that's caused us issues.
 
+	\subsection{Two-Fluid Model Drude Analysis} \label{subsec:twofluid}
+
+	Summarising Drude here, for any particular channel parameterised by some scattering time $\tau_i$, where $i$ indexes the channel,\todo{Tinkham has a plus sign in the denominator of~\eqref{eq:tinkhamdrude}, and I have no idea why, or if it's related to other sign or complex conjugation differences}
+	\begin{align}
+		\sigma_i(\omega) &\equiv \sigma_{1i} - i \sigma_{2i} \\
+		\sigma_i(\omega) &= \frac{\flatfrac{n_i e^2 \tau_i}{m}}{1 + i \omega \tau_i} \label{eq:tinkhamdrude}
+	\end{align}
+	For some two-fluid model, we can allow two channels $i \in \{n, s\}$, and describe the superconducting channel by sending $\tau_s \rightarrow \infty$.
+	As Tinkham describes, this leads to a delta function, and we get for the total conductivity
+	\begin{align}
+		\sigma_1(\omega) &= \frac{\pi n_s e^2}{2m} \delta(\omega) + \frac{n_n e^2 \tau_n}{m} \\
+		\sigma_2(\omega) &= \frac{n_s e^2}{m \omega}.
+	\end{align}
+	This by itself doesn't mean a ton, as this two-fluid model isn't expected to be a spectacular approximation.
+	It does, however, point to a couple features we should expect for the superconductivity, which is that there still is dissipative flow for any non-zero frequency (where dissipative flow is controlled by $\sigma_1$).
+	Also, we expect some specific signs for the conductivity's real and imaginary parts, and thus specific signs for the dielectric constant.
+	With $\epsilon \sim i \sigma$, we should expect that $\epsilon$ has a positive real and imaginary part, if $\sigma_1$ and $\sigma_2$ are both positive.
+	We don't end up seeing this in other forms, so we should investigate this.\todo{make sure the signs are consistent.}
 \end{document}
