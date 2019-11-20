@@ -36,4 +36,24 @@
 	With $\epsilon \sim i \sigma$, we should expect that $\epsilon$ has a positive real and imaginary part, if $\sigma_1$ and $\sigma_2$ are both positive.
 	We don't end up seeing this in other forms, so we should investigate this.\todo{make sure the signs are consistent.}
 
+	\subsection{BCS Electrodynamics} \label{subsec:bcscalc}
+
+	We'll summarise here Tinkham's section 3.10, which calculates the electrodynamic response using the BCS theory.
+	Our goal here is to try to summarise the specific list of assumptions that lead to the dissipative conductivity for arbitrary large wavevector.
+
+	We begin by assuming that we have some perturbation to the Hamiltonian of the form
+	\begin{equation}
+		% Tinkham uses \mathscr rather than \mathcal, but that causes issues with luaotfload and rsfs apparently.
+		\mathcal{H}_1 = \frac{ie\hbar}{2 m c} \sum_i \left( \nabla_i \cdot \vec{A} + \vec{A} \cdot \nabla_i \right)
+	\end{equation}
+	Then, as Tinkham describes, we can expand the wavevector in Fourier components: \todo{Why does Tinkham use $k$ in the sum?}
+	\begin{equation}
+		\vec{A}(\vec{r}) = \sum_{\vec{q}} \vec{a}(\vec{q}) e^{i \vec{q} \cdot \vec{r}}.
+	\end{equation}
+	This lets us write $\mathcal{H}_1$ as
+	\begin{equation}
+		\mathcal{H}_1 = - \frac{e \hbar}{m c}\sum_{\vec{k}, \vec{q}} \vec{k} \cdot \vec{a}(\vec{q}) c^\ast_{\vec{k} + \vec{q}, \sigma} c_{\vec{k}, \sigma}
+	\end{equation}
+	We now have to relate this using Chambers' form for the current transform thing\todo{Continue on with 3.10 notes}.
+
 \end{document}
