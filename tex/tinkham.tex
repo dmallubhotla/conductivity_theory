@@ -18,11 +18,12 @@
 
 	\subsection{Two-Fluid Model Drude Analysis} \label{subsec:twofluid}
 
-	Summarising Drude here, for any particular channel parameterised by some scattering time $\tau_i$, where $i$ indexes the channel,\todo{Tinkham has a plus sign in the denominator of~\eqref{eq:tinkhamdrude}, and I have no idea why, or if it's related to other sign or complex conjugation differences}
+	Summarising Drude here, for any particular channel parameterised by some scattering time $\tau_i$, where $i$ indexes the channel,
 	\begin{align}
 		\sigma_i(\omega) &\equiv \sigma_{1i} - i \sigma_{2i} \\
 		\sigma_i(\omega) &= \frac{\flatfrac{n_i e^2 \tau_i}{m}}{1 + i \omega \tau_i} \label{eq:tinkhamdrude}
 	\end{align}
+	Note that effectively this is for some reason the complex conjugate of the Drude conductivity we defined earlier.\todo{why?}
 	For some two-fluid model, we can allow two channels $i \in \{n, s\}$, and describe the superconducting channel by sending $\tau_s \rightarrow \infty$.
 	As Tinkham describes, this leads to a delta function, and we get for the total conductivity
 	\begin{align}
