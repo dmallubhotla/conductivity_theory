@@ -16,7 +16,6 @@
 \newcommand{\mixcorr}{\mathfrak{G}^{(S)}_{ij}}
 \newcommand{\mixcorrflip}{\mathfrak{\mathcal{G}}^{(S)}_{ij}}
 
-
 \begin{document}
 
 % !TeX spellcheck = en_GB
@@ -51,7 +50,7 @@ Since it's all based on that, I'll suppress citations of Agarwal, apart from spe
 		\delta \ev{A_i(\vec{r}, t)} = \sum_j \int \dd[3]{r'} \dd{t'} \chi_{ij}(\vec{r}, \vec{r}', t - t') f_j(\vec{r}', t').
 	\end{equation}
 	(This is fairly easy to show, although slightly unenlightening.
-	See also the discussion in~\cite{Giuliani2005}.)
+	See also the discussion in~\cite{Giuliani2005} or~\cite{Altland}.)
 	Note that this means
 	\begin{equation}
 		\fdv{\ev{A_i(\vec{r}, \omega)}}{f_j(\vec{r}', \omega)} = \chi_{ij}(\vec{r}, \vec{r}', \omega).
@@ -101,5 +100,12 @@ Since it's all based on that, I'll suppress citations of Agarwal, apart from spe
 	\end{align}
 	As Agarwal helpfully recaps, our boundary conductions across surfaces will be that the tangential components of $\vec{E}$ and $\vec{H}$ are continuous across the interface, along with the normal components of $\vec{D}$ and $\vec{B}$.
 	Now, Agarwal says of course that we're assuming no surface currents or surface charges, which seems like it should be somewhat disruptive of our future use for calculating properties like surface impedance.\todo{Either talk about why this isn't a problem, or  correct this.}
+
+	\subsection[Non-dispersive dielectric response]{Response functions for non-dispersive dielectrics} \label{subsec:localresponse}
+
+	We can jump ahead and work through the case of two identical isotropic, non-magnetic and spatially non-dispersive dielectrics.\todo{finish this subsection}
+	Each occupies a half space, one from $0 \leq z \leq \infty$ (region I) and the other from $-\infty \leq z \leq d$ (region III).
+	The area from $-d \leq z \leq 0$ (region II) is a vacuum.
+	For the future application of noise, we can set this separation $d$ to $\infty$, effectively taking region III out of the picture.
 
 \end{document}
