@@ -13,21 +13,28 @@
 	% !TeX spellcheck = en_GB
 	\onlyinsubfile{\maketitle}
 	\section{Nam Conductivity Derivation} \label{sec:Nam}
-	Let's summarise here the derivation given by Nam\supercite{Nam1967}.
-
+	Let's summarise here the derivation given by Nam~\autocite{Nam1967}.
 	He begins with
 	\begin{equation}
-		J_\mu(x) = - \frac{1}{4\pi}\int \dd[4]{x'} K_{\mu\nu}(x, x') A^\nu(x'),
+		J_\mu(x) = - \frac{1}{4\pi}\int \dd[4]{x'} \underline{K}_{\mu\nu}(x, x') A^\nu(x'),
 	\end{equation}
-	or in frequency space,
+	or in frequency space\footnote{
+		As an aside, we can compare this with equation~(3.174) in~\autocite{Giuliani2005}:
+		\begin{equation*}
+			\vec{\jmath}_{L(T)}(q, \omega) = \frac{e}{c} \chi_{L(T)}(q, \omega) \vec{A}_{L(T)}(q, \omega),
+		\end{equation*}
+		which tells us that we're indeed working with the correct response functions.
+	},
 	\begin{equation}
 		J_\mu(q, \omega) = - \frac{1}{4\pi} K_{\mu\nu}(q, \omega) A^\nu(q, \omega),
 	\end{equation}
 
-	We can compare this with equation~(3.174) in~\cite{Giuliani2005}:
-	\begin{equation}
-		\vec{\jmath}_{L(T)}(q, \omega) = \frac{e}{c} \chi_{L(T)}(q, \omega) \vec{A}_{L(T)}(q, \omega),
-	\end{equation}
-	which tells us that we're indeed working with the correct response functions.
+	Nam shows:
+	\begin{itemize}
+		\item We can show that there's an explicit value $K(0, 0)$ such that
+			\begin{equation}
+				\lim_{q \rightarrow 0} \lim_{\omega \rightarrow 0} K(q, \omega) = \lim_{\omega \rightarrow 0} \lim_{q \rightarrow 0} K(q, \omega) = K(0, 0)
+			\end{equation}
+	\end{itemize}
 
 \end{document}
