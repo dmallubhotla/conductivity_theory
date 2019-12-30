@@ -19,7 +19,7 @@
 		J_\mu(x) = - \frac{1}{4\pi}\int \dd[4]{x'} \underline{K}_{\mu\nu}(x, x') A^\nu(x'),
 	\end{equation}
 	or, in frequency space\footnote{
-		As an aside, we can compare this with equation~(3.174) in~\autocite{Giuliani2005}:
+		As an aside, we can compare this with equation~(3.174) in~\cite{Giuliani2005}:
 		\begin{equation*}
 			\vec{\jmath}_{L(T)}(q, \omega) = \frac{e}{c} \chi_{L(T)}(q, \omega) \vec{A}_{L(T)}(q, \omega),
 		\end{equation*}
@@ -38,4 +38,47 @@
 		\item the explicit form of the response function $K$
 		\item the way the response function breaks into normal and superconducting parts.
 	\end{itemize}
+
+	\subsection{Diamagnetic / Paramagnetic Decomposition} \label{subsec:diaparamag}
+
+	Nam decomposes the response function into a diamagnetic and paramagnetic part:\todo{finish this idea}
+	\begin{equation}
+		K_{\mu\nu} = K_{\mu\nu}^p + K_{\mu\nu}^d
+	\end{equation}
+	\subsection{Response functions} \label{subsec:}
+
+	Defining a correlation function
+	\begin{equation}
+		P_{\mu\nu}(x, x') = 4 \pi i \ev{T j_\mu^p(x) j_\nu^p(x')}
+	\end{equation}
+	where $j^p$ is the paramagnetic part of the current.\todo{Is there a ``clean'' way to define this?
+		Possible in terms of just looking at the decomposition of $j$ operator, but prefer something more declarative}
+
+	Nam says that $P_{\mu\nu}(q, \omega)$ has the same imaginary and real parts as $K_{\mu\nu}^p$, which is convenient.\todo{fd theorem}
+	We work in the spinor representation (see Nambu~\autocite{Nambu1960}) with
+	\begin{align}
+		\Psi_k^{\dagger}(t) &= \begin{pmatrix}
+							\psi_{k \uparrow}^\dagger(t) & \psi_{-k \downarrow}(t)
+			\end{pmatrix} \\
+		\Psi_k(t) &= \begin{pmatrix}
+								\psi_{k \uparrow}(t) \\
+								\psi_{-k \downarrow}^\dagger(t)
+		\end{pmatrix}
+	\end{align}
+	The paramagnetic part of the current operator is defined via
+	\begin{equation}
+		j_\mu^p(\vec{q}, t) = e \sum_k \Psi_k^{\dagger}(t) \gamma_\mu(\vec{k}, \vec{k + q}) \Psi_{k + q}(t),
+	\end{equation}
+	where
+	\begin{align}
+		\gamma_\mu(\vec{k}, \vec{k + q}) &= v_\mu \left(1 - \delta_{\mu, 0} \right) + \tau_3 \delta_{\mu, 0} \\
+		\tau_3 &= \begin{pmatrix}
+					 1 & 0 \\
+					 0 & -1
+				\end{pmatrix} \\
+		v_\mu &= \left( \nabla_k \epsilon_k \right)_\mu + \frac{1}{2}\left( \nabla_{k + q} \epsilon_{k + q} - \nabla_k \epsilon_k \right)_\mu
+	\end{align}
+
+
+
 \end{document}
