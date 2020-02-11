@@ -49,7 +49,7 @@
 
 	Defining a correlation function
 	\begin{equation}
-		P_{\mu\nu}(x, x') = 4 \pi i \ev{T j_\mu^p(x) j_\nu^p(x')}
+		P_{\mu\nu}(x, x') = 4 \pi i \ev{T j_\mu^p(x) j_\nu^p(x')} \label{eq:corrf}
 	\end{equation}
 	where $j^p$ is the paramagnetic part of the current.\todo{Is there a ``clean'' way to define this?
 		Possible in terms of just looking at the decomposition of $j$ operator, but prefer something more declarative}
@@ -67,7 +67,7 @@
 	\end{align}
 	The paramagnetic part of the current operator is defined via
 	\begin{equation}
-		j_\mu^p(\vec{q}, t) = e \sum_k \Psi_k^{\dagger}(t) \gamma_\mu(\vec{k}, \vec{k + q}) \Psi_{k + q}(t),
+		j_\mu^p(\vec{q}, t) = e \sum_k \Psi_k^{\dagger}(t) \gamma_\mu(\vec{k}, \vec{k + q}) \Psi_{k + q}(t), \label{eq:current}
 	\end{equation}
 	where
 	\begin{align}
@@ -78,7 +78,17 @@
 				\end{pmatrix} \\
 		v_\mu &= \left( \nabla_k \epsilon_k \right)_\mu + \frac{1}{2}\left( \nabla_{k + q} \epsilon_{k + q} - \nabla_k \epsilon_k \right)_\mu
 	\end{align}
+	For future edification, we can write down that
+	\begin{align}
+		\gamma_{\mu = 0} &= \tau_3 \\
+		\gamma_{\mu \neq 0} &= v_\mu I
+	\end{align}
+	where $I$ is the identity on the spin indices.
 
-
+	We can insert~\eqref{eq:current} into~\eqref{eq:corrf},
+	\begin{align}
+		P_{\mu\nu}(x, x') &= 4 \pi i \ev{T j_\mu^p(x) j_\nu^p(x')} \\
+		P_{\mu\nu}(x, x') &= \int e^{-i q x'} 4 \pi i e^2 \ev{T \sum_{k, k'} \Psi_k^{\dagger}(t) \gamma_\mu(\vec{k}, \vec{k + q}) \Psi_{k + q}(t) \Psi_k'^{\dagger}(t') \gamma_\nu(\vec{k'}, \vec{k' + q}) \Psi_{k' + q}(t')} \\
+	\end{align}
 
 \end{document}
